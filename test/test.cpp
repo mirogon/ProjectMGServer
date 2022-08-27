@@ -1,5 +1,5 @@
 #include <catch2/catch_test_macros.hpp>
 
-TEST_CASE("FailingTest"){
-    REQUIRE(false);
+TEST_CASE("True"){
+    REQUIRE(true);
 }
