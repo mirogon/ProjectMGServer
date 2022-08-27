@@ -3,6 +3,7 @@ project(Game LANGUAGES CXX)
 
 add_executable(ProjectMGServer 
 	"src/main.cpp"
+	"src/Net/UdpSocket.h"
 )
 
 set(CMAKE_CXX_STANDARD 17)
