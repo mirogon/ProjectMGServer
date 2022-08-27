@@ -36,6 +36,8 @@ add_executable(ProjectMGServerTest
 	"test/PacketDistributorTest.cpp"
 	"test/Game/CharacterTest.cpp"
 	"test/Mocks.h"
+	"test/Game/PlayerTest.cpp" 
+	"test/Game/CharacterMoverTest.cpp"
 )
 
 #target_link_libraries(ProjectMGServer PUBLIC GameNetworkingSockets::shared)
