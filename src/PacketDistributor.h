@@ -34,6 +34,10 @@ private:
 					CharacterMovePacket p{ data.first.get() };
 					server->HandleCharacterMovePacket(addr, p);
 				}
+				else if (data.first.get()[1] == PacketType::PlayerRegister) {
+					PlayerRegisterPacket p{ data.first.get() };
+					server->HandlePlayerRegisterPacket(addr, p);
+				}
 			}
 		}
 		catch (...) {

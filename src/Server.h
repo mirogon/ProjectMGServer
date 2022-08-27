@@ -21,4 +21,7 @@ public:
 	void HandleCharacterMovePacket(SocketAddress playerAddr, CharacterMovePacket packet) override {
 		std::cout << "MoveDir: " << packet.MoveDir().x << "|" << packet.MoveDir().y << std::endl;
 	}
+
+	void HandlePlayerRegisterPacket(SocketAddress playerAddr, PlayerRegisterPacket p) override {
+	}
 };

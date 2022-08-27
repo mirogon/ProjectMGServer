@@ -15,6 +15,16 @@ TEST_CASE("HandleCharacterMovePacket", "[Server]") {
 	CharacterMoverPtr mover{ new CharacterMover() };
 	ServerPtr server{ new Server(player, mover) };
 	CharacterMovePacket p{ Vector2{0,1} };
-	//server->HandleCharacterMovePacket(p);
+	SocketAddress addr{ IPAddressPtr{new IPAddress{"0.0.0.0"}}, 0 };
+	server->HandleCharacterMovePacket(addr, p);
+}
+
+TEST_CASE("HandlePlayerRegisterPacket", "[Server]") {
+	std::vector<PlayerPtr> player = std::vector<PlayerPtr>();
+	CharacterMoverPtr mover{ new CharacterMover() };
+	ServerPtr server{ new Server(player, mover) };
+	PlayerRegisterPacket p{};
+	SocketAddress addr{ IPAddressPtr{new IPAddress{"0.0.0.0"}}, 0 };
+	server->HandlePlayerRegisterPacket(addr, p);
 }
 

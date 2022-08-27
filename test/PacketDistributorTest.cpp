@@ -17,6 +17,21 @@ TEST_CASE("Creation", "[PacketDistributor]") {
 	PacketDistributor distributor{udpSocket, server};
 }
 
+TEST_CASE("DistributePlayerRegister_CallsServerHandlePlayerRegister", "[PacketDistributor]") {
+	ServerMock serverMock = ServerMock();
+	ServerPtr server{ &serverMock , [](IServer* s) {} };
+
+	EXPECT_CALL(serverMock, HandlePlayerRegisterPacket).Times(1);
+
+	UdpSocketPtr udpSocket{ new UdpSocket(55580) };
+	PacketDistributor distributor{ udpSocket, server };
+
+	UdpSocketPtr sendSocket{ new UdpSocket(0) };
+	auto p = PlayerRegisterPacket{}.PacketFormat();
+	SocketAddress addr{ IPAddressPtr{new IPAddress("127.0.0.1")}, 55580 };
+	sendSocket->Send(p.first.get(), p.second, addr);
+}
+
 TEST_CASE("DistributeCharacterMove_CallsServerHandleCharacterMove", "[PacketDistributor]") {
 	ServerMock serverMock = ServerMock();
 	ServerPtr server{ &serverMock , [](IServer* s) {} };
@@ -32,3 +47,4 @@ TEST_CASE("DistributeCharacterMove_CallsServerHandleCharacterMove", "[PacketDist
 	sendSocket->Send(p.first.get(), p.second, addr);
 
 }
+
