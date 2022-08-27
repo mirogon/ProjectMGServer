@@ -15,6 +15,9 @@ public:
 	std::vector<CharacterPtr> Character() override {
 		return character;
 	}
+	void AddCharacter(CharacterPtr newChar) override {
+		character.push_back(newChar);
+	}
 	SocketAddress Address() {
 		return addr;
 	}

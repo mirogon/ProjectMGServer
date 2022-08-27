@@ -2,9 +2,12 @@
 #include "Packets.h"
 #include "Net/UdpSocket.h"
 #include "PacketDistributor.h"
+#include "src/Game/Player.h"
 
 int main(int argc, char* argv[]){
-    ServerPtr server{ new Server() };
+    std::vector<PlayerPtr> player = std::vector<PlayerPtr>();
+    CharacterMoverPtr charMover{ new CharacterMover() };
+    ServerPtr server{ new Server(player, charMover) };
     UdpSocketPtr udpSocket{ new UdpSocket(55580) };
     PacketDistributor packetDistributor{ udpSocket, server };
     while(true){}
