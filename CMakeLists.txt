@@ -4,7 +4,7 @@ project(Game LANGUAGES CXX)
 add_executable(ProjectMGServer 
 	"src/main.cpp"
 	"src/Net/UdpSocket.h"
-)
+ "src/Packets.h")
 
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_EXTENSIONS OFF)
@@ -31,7 +31,8 @@ add_executable(ProjectMGServerTest
 	"test/Net/SocketAddressTest.cpp"
 	"test/Net/TcpSocketTest.cpp"
 	"test/Net/UdpSocketTest.cpp"
-)
+	"test/PacketsTest.cpp"
+ "test/Vector2Test.cpp")
 
 #target_link_libraries(ProjectMGServer PUBLIC GameNetworkingSockets::shared)
 target_link_libraries(ProjectMGServerTest PRIVATE Catch2::Catch2WithMain)
