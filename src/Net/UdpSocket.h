@@ -25,4 +25,8 @@ public:
 	SocketAddress LocalAddress() override {
 		return SocketAddress(IPAddressPtr{ new IPAddress(pocoSocket.address().host()) }, pocoSocket.address().port());
 	}
+
+	void Close() override {
+		pocoSocket.close();
+	}
 };

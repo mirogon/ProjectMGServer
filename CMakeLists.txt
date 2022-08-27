@@ -34,6 +34,7 @@ add_executable(ProjectMGServerTest
 	"test/PacketsTest.cpp"
 	"test/Vector2Test.cpp" 
 	"test/PacketDistributorTest.cpp"
+	"test/Game/CharacterTest.cpp"
 	"test/Mocks.h"
 )
 

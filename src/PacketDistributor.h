@@ -19,18 +19,23 @@ public:
 	}
 	~PacketDistributor() {
 		active = false;
+		udpSocket->Close();
 		receiveThread.join();
 	}
 
 private:
 
 	void ReceivePackets() {
-		while (active){
-			auto data = udpSocket->Receive();
-			if (data.first.get()[1] == PacketType::CharacterMove) {
-				CharacterMovePacket p{ data.first.get() };
-				server->HandleCharacterMovePacket(p);
+		try {
+			while (active){
+				auto data = udpSocket->Receive();
+				if (data.first.get()[1] == PacketType::CharacterMove) {
+					CharacterMovePacket p{ data.first.get() };
+					server->HandleCharacterMovePacket(p);
+				}
 			}
+		}
+		catch (...) {
 		}
 	}
 

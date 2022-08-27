@@ -25,3 +25,10 @@ TEST_CASE("FVectorEqual", "[FVector2]") {
 	FVector2 v2{ 0,1 };
 	REQUIRE(v1 == v2);
 }
+
+TEST_CASE("FVectorAddition", "[FVector2]") {
+	FVector2 v1{ 10,2 };
+	FVector2 v2{ 1,1 };
+	v2 += v1;
+	REQUIRE(FVector2{ 11, 3 } == v2);
+}
