@@ -3,6 +3,31 @@
 #include "src/Vector2.h"
 #include "src/FVector2.h"
 
+TEST_CASE("PlayerRegister_Creation", "[Packets]") {
+	PlayerRegisterPacket packet{};
+}
+
+TEST_CASE("PlayerRegister_FromRaw", "[Packets]") {
+	uint8_t raw[2];
+	raw[0] = 0;
+	raw[1] = PacketType::PlayerRegister;
+
+	PlayerRegisterPacket p{raw};
+}
+
+TEST_CASE("PlayerRegister_PacketFormat", "[Packets]") {
+	uint8_t raw[2];
+	raw[0] = 0;
+	raw[1] = PacketType::PlayerRegister;
+
+	PlayerRegisterPacket p{raw};
+
+	auto packetFormat = p.PacketFormat();
+	for (int i = 0; i < 2; ++i) {
+		REQUIRE(raw[i] == packetFormat.first.get()[i]);
+	}
+}
+
 TEST_CASE("CharacterMove_Creation", "[Packets]") {
 	CharacterMovePacket packet{ Vector2{0,1} };
 	REQUIRE(Vector2{0,1} == packet.MoveDir());

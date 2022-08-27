@@ -4,8 +4,21 @@
 #include "src/FVector2.h"
 
 enum PacketType {
-	CharacterMove = 1,
-	CharacterPosition = 2
+	PlayerRegister = 1,
+	CharacterMove = 2,
+	CharacterPosition = 3
+};
+
+struct PlayerRegisterPacket {
+	PlayerRegisterPacket() {}
+	PlayerRegisterPacket(uint8_t* raw){}
+
+	std::pair<std::shared_ptr<uint8_t>, int> PacketFormat() {
+		std::shared_ptr<uint8_t> data{ new uint8_t[4] };
+		data.get()[0] = 0;
+		data.get()[1] = PacketType::PlayerRegister;
+		return std::make_pair(data, 2);
+	}
 };
 
 struct CharacterMovePacket {
