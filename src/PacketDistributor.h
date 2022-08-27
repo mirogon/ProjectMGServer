@@ -28,10 +28,11 @@ private:
 	void ReceivePackets() {
 		try {
 			while (active){
-				auto data = udpSocket->Receive();
+				SocketAddress addr{ IPAddressPtr{new IPAddress{"0.0.0.0"}}, 0 };
+				auto data = udpSocket->ReceiveFrom(addr);
 				if (data.first.get()[1] == PacketType::CharacterMove) {
 					CharacterMovePacket p{ data.first.get() };
-					server->HandleCharacterMovePacket(p);
+					server->HandleCharacterMovePacket(addr, p);
 				}
 			}
 		}

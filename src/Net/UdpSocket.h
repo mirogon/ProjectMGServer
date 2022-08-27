@@ -22,6 +22,15 @@ public:
 		return std::make_pair(data, received);
 	}
 
+	std::pair<std::shared_ptr<uint8_t>, int> ReceiveFrom(SocketAddress& from) override {
+		uint8_t* buffer = new uint8_t[1500];
+		Poco::Net::SocketAddress addr;
+		int received = pocoSocket.receiveFrom(buffer, 1500, addr);
+		from = SocketAddress{ IPAddressPtr(new IPAddress(addr.host().toString())), addr.port() };
+		std::shared_ptr<uint8_t> data{buffer};
+		return std::make_pair(data, received);
+	}
+
 	SocketAddress LocalAddress() override {
 		return SocketAddress(IPAddressPtr{ new IPAddress(pocoSocket.address().host()) }, pocoSocket.address().port());
 	}

@@ -4,5 +4,5 @@
 
 class ServerMock : public IServer {
 public:
-	MOCK_METHOD(void, HandleCharacterMovePacket, (CharacterMovePacket), (override));
+	MOCK_METHOD(void, HandleCharacterMovePacket, (SocketAddress, CharacterMovePacket), (override));
 };

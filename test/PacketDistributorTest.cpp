@@ -10,7 +10,9 @@ using ::testing::Return;
 using ::testing::_;
 
 TEST_CASE("Creation", "[PacketDistributor]") {
-	ServerPtr server{ new Server() };
+	std::vector<PlayerPtr> player = std::vector<PlayerPtr>();
+	CharacterMoverPtr mover{ new CharacterMover() };
+	ServerPtr server{ new Server(player, mover) };
 	UdpSocketPtr udpSocket{ new UdpSocket(0) };
 	PacketDistributor distributor{udpSocket, server};
 }
