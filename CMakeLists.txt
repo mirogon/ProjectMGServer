@@ -32,7 +32,10 @@ add_executable(ProjectMGServerTest
 	"test/Net/TcpSocketTest.cpp"
 	"test/Net/UdpSocketTest.cpp"
 	"test/PacketsTest.cpp"
- "test/Vector2Test.cpp" "test/PacketDistributorTest.cpp")
+	"test/Vector2Test.cpp" 
+	"test/PacketDistributorTest.cpp"
+	"test/Mocks.h"
+)
 
 #target_link_libraries(ProjectMGServer PUBLIC GameNetworkingSockets::shared)
 target_link_libraries(ProjectMGServerTest PRIVATE Catch2::Catch2WithMain)

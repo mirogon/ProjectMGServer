@@ -1,9 +1,10 @@
 #pragma once
 #include <memory>
+#include "src/Packets.h"
 
 class IServer {
 public:
-	virtual void EMPTY_INTERFACE() = 0;
+	virtual void HandleCharacterMovePacket(CharacterMovePacket p) = 0;
 };
 
 typedef std::shared_ptr<IServer> ServerPtr;

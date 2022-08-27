@@ -4,7 +4,6 @@
 class Server : public IServer {
 public:
 
-	void EMPTY_INTERFACE() override {
+	void HandleCharacterMovePacket(CharacterMovePacket p) override {
 	}
-
 };
