@@ -44,7 +44,8 @@ TEST_CASE("SendsCharacterPositionPackets", "[Server]") {
 	MockUdpSocket mockUdpSocket;
 
 	EXPECT_CALL(mockUdpSocket, Close);
-	EXPECT_CALL(mockUdpSocket, Send).Times(1);
+	EXPECT_CALL(mockUdpSocket, Send).Times(AtLeast(1));
+
 	PlayerRegisterPacket rp{};
 	std::pair<std::shared_ptr<uint8_t>, int> pair = std::make_pair(std::shared_ptr<uint8_t>(new uint8_t[2]), 2);
 	EXPECT_CALL(mockUdpSocket, ReceiveFrom).WillOnce(Return(rp.PacketFormat()))

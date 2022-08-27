@@ -33,7 +33,7 @@ private:
 		while (active) {
 			for(int i = 0; i < character.size(); ++i){
 				auto moveDir = character.at(i)->MoveDirection();
-				character.at(i)->Move(FVector2{(float)moveDir.x, (float)moveDir.y});
+				character.at(i)->Move(FVector2{(float)moveDir.x * 0.1f, (float)moveDir.y * 0.1f});
 			}
 			std::this_thread::sleep_for(std::chrono::milliseconds(15));
 		}

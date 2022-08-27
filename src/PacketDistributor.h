@@ -36,6 +36,7 @@ private:
 				}
 				else if (data.first.get()[1] == PacketType::PlayerRegister) {
 					PlayerRegisterPacket p{ data.first.get() };
+					std::cout << "Received register packet" << std::endl;
 					server->HandlePlayerRegisterPacket(addr, p);
 				}
 			}
