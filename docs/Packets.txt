@@ -1,8 +1,0 @@
-PlayerLogin
-
-2 byte - type
-
-CharacterMove
-
-2 byte - type
-1 byte - direction (1 = up, 2 = down, 3 = left, 4 = right)
