@@ -28,6 +28,7 @@ add_executable(ProjectMGServerTest
 	"test/ServerTest.cpp"
 	"test/Net/IPAddressTest.cpp"
 	"test/Net/SocketAddressTest.cpp"
+	"test/Net/TcpSocketTest.cpp"
 )
 
 #target_link_libraries(ProjectMGServer PUBLIC GameNetworkingSockets::shared)
