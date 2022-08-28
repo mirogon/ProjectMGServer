@@ -5,9 +5,11 @@ class Character : public ICharacter {
 private:
 	FVector2 position;
 	Vector2 moveDir;
+	float speed;
 public:
-	Character(FVector2 pos) {
+	Character(FVector2 pos, float speed) {
 		this->position = pos;
+		this->speed = speed;
 		moveDir = Vector2{ 0,0 };
 	}
 	FVector2 Position() override {
@@ -21,5 +23,9 @@ public:
 	}
 	void Move(FVector2 movement) override {
 		position += movement;
+	}
+
+	float Speed() override {
+		return speed;
 	}
 };

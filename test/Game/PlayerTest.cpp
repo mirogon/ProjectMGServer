@@ -4,7 +4,7 @@
 #include "src/Net/SocketAddress.h"
 
 TEST_CASE("Creation", "[PlayerTest]") {
-	CharacterPtr playerCharacter{ new Character(FVector2{0,0})};
+	CharacterPtr playerCharacter{ new Character(FVector2{0,0}, 0)};
 	SocketAddress addr{ IPAddressPtr{new IPAddress("127.0.0.1")}, 500 };
 	PlayerPtr player{ new Player(addr, playerCharacter) };
 	REQUIRE(playerCharacter == player->Character());
@@ -13,7 +13,7 @@ TEST_CASE("Creation", "[PlayerTest]") {
 }
 
 TEST_CASE("AddCharacter", "[PlayerTest]") {
-	CharacterPtr playerCharacter{ new Character(FVector2{0,0})};
+	CharacterPtr playerCharacter{ new Character(FVector2{0,0}, 0)};
 	SocketAddress addr{ IPAddressPtr{new IPAddress("127.0.0.1")}, 500 };
 	PlayerPtr player{ new Player(addr, playerCharacter) };
 }

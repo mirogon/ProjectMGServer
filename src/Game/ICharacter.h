@@ -9,6 +9,7 @@ public:
 	virtual Vector2 MoveDirection() = 0;
 	virtual void SetMoveDirection(Vector2 newMoveDir) = 0;
 	virtual void Move(FVector2 movement) = 0;
+	virtual float Speed() = 0;
 };
 
 typedef std::shared_ptr<ICharacter> CharacterPtr;

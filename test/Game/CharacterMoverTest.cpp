@@ -10,7 +10,7 @@ TEST_CASE("Creation", "[CharacterMoverTest]") {
 
 TEST_CASE("AfterStart_MovesCorrectly", "[CharacterMoverTest]") {
 	std::vector<CharacterPtr> character = std::vector<CharacterPtr>();
-	character.push_back(CharacterPtr{ new Character(FVector2{0,0}) });
+	character.push_back(CharacterPtr{ new Character(FVector2{0,0}, 5) });
 	character.at(0)->SetMoveDirection(Vector2{ 1, 0 });
 	REQUIRE(FVector2{ 0,0 } == character.at(0)->Position());
 	CharacterMoverPtr characterMover{new CharacterMover()};

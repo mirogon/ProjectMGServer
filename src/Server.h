@@ -48,7 +48,7 @@ public:
 	}
 
 	void HandlePlayerRegisterPacket(SocketAddress playerAddr, PlayerRegisterPacket p) override {
-		CharacterPtr character{ new Character(FVector2{0,0}) };
+		CharacterPtr character{ new Character(FVector2{0,0}, 5) };
 		player.push_back(PlayerPtr{ new Player(playerAddr, character) });
 		std::vector<CharacterPtr> characters = std::vector<CharacterPtr>();
 		for (int i = 0; i < player.size(); ++i) {
