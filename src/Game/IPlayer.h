@@ -4,8 +4,7 @@
 
 class IPlayer {
 public:
-	virtual std::vector<CharacterPtr> Character() = 0;
-	virtual void AddCharacter(CharacterPtr character) = 0;
+	virtual CharacterPtr Character() = 0;
 	virtual SocketAddress Address() = 0;
 };
 

@@ -4,19 +4,16 @@
 
 class Player : public IPlayer {
 private:
-	std::vector<CharacterPtr> character;
+	CharacterPtr character;
 	SocketAddress addr;
 public:
-	Player(SocketAddress addr, std::vector<CharacterPtr> character):
+	Player(SocketAddress addr, CharacterPtr character):
 		addr{addr}
 	{
 		this->character = character;
 	}
-	std::vector<CharacterPtr> Character() override {
+	CharacterPtr Character() override {
 		return character;
-	}
-	void AddCharacter(CharacterPtr newChar) override {
-		character.push_back(newChar);
 	}
 	SocketAddress Address() {
 		return addr;

@@ -41,23 +41,27 @@ public:
 					moveDir.y = -1;
 				}
 				
-				player.at(i)->Character()[0]->SetMoveDirection(moveDir);
+				player.at(i)->Character()->SetMoveDirection(moveDir);
 				std::cout << "SET MoveDir: " << moveDir.x << "|" << moveDir.y << std::endl;
 			}
 		}
 	}
 
 	void HandlePlayerRegisterPacket(SocketAddress playerAddr, PlayerRegisterPacket p) override {
-		player.push_back(PlayerPtr{new Player(playerAddr, std::vector<CharacterPtr>())});
-		player.back()->AddCharacter(CharacterPtr{ new Character(FVector2{0,0}) });
-		characterMover->SetCharacter(player.at(0)->Character());
+		CharacterPtr character{ new Character(FVector2{0,0}) };
+		player.push_back(PlayerPtr{ new Player(playerAddr, character) });
+		std::vector<CharacterPtr> characters = std::vector<CharacterPtr>();
+		for (int i = 0; i < player.size(); ++i) {
+			characters.push_back(player.at(i)->Character());
+		}
+		characterMover->SetCharacter(characters);
 	}
 private:
 	void SendCharacterPositions() {
 		while (active) {
 			for (int i = 0; i < player.size(); ++i) {
 				PlayerPtr p = player.at(i);
-				auto pos = p->Character()[0]->Position();
+				auto pos = p->Character()->Position();
 				CharacterPositionPacket posPacket{ pos };
 				//std::cout << "NEWPOS: " << posPacket.Position().x << "|" << posPacket.Position().y << std::endl;
 				udpSocket->Send(posPacket.PacketFormat().first.get(), posPacket.PacketFormat().second, p->Address());

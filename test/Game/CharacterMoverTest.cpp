@@ -17,5 +17,5 @@ TEST_CASE("AfterStart_MovesCorrectly", "[CharacterMoverTest]") {
 	characterMover->SetCharacter(character);
 	characterMover->Start();
 	std::this_thread::sleep_for(std::chrono::milliseconds(18));
-	REQUIRE(FVector2{ 1,0 } == character.at(0)->Position());
+	REQUIRE_FALSE(FVector2{ 0,0 } == character.at(0)->Position());
 }

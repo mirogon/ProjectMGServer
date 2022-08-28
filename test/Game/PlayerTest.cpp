@@ -4,19 +4,16 @@
 #include "src/Net/SocketAddress.h"
 
 TEST_CASE("Creation", "[PlayerTest]") {
-	std::vector<CharacterPtr> playerCharacter = std::vector<CharacterPtr>();
+	CharacterPtr playerCharacter{ new Character(FVector2{0,0})};
 	SocketAddress addr{ IPAddressPtr{new IPAddress("127.0.0.1")}, 500 };
-	PlayerPtr player{ new Player(addr, std::vector<CharacterPtr>{playerCharacter}) };
+	PlayerPtr player{ new Player(addr, playerCharacter) };
 	REQUIRE(playerCharacter == player->Character());
 	REQUIRE(addr.Address() == player->Address().Address());
 	REQUIRE(addr.Port() == player->Address().Port());
 }
 
 TEST_CASE("AddCharacter", "[PlayerTest]") {
-	std::vector<CharacterPtr> playerCharacter = std::vector<CharacterPtr>();
+	CharacterPtr playerCharacter{ new Character(FVector2{0,0})};
 	SocketAddress addr{ IPAddressPtr{new IPAddress("127.0.0.1")}, 500 };
-	PlayerPtr player{ new Player(addr, std::vector<CharacterPtr>{playerCharacter}) };
-	REQUIRE(0 == player->Character().size());
-	player->AddCharacter(CharacterPtr{ new Character(FVector2{0,0}) });
-	REQUIRE(1 == player->Character().size());
+	PlayerPtr player{ new Player(addr, playerCharacter) };
 }
